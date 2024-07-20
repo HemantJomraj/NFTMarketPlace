@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { GetIpfsUrlFromPinata } from "../utils";
 
+// Storing Data into Variables and Constants
 export default function Marketplace() {
 const sampleData = [
     {
@@ -38,6 +39,7 @@ const sampleData = [
 const [data, updateData] = useState(sampleData);
 const [dataFetched, updateFetched] = useState(false);
 
+// Function to get All NFTs
 async function getAllNFTs() {
     const ethers = require("ethers");
     //After adding your Hardhat network to your metamask, this code will get providers and signers
