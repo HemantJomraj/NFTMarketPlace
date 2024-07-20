@@ -73,6 +73,7 @@ export default function SellNFT () {
         }
     }
 
+    // Async Function to List NFTs
     async function listNFT(e) {
         e.preventDefault();
 
