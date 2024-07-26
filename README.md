@@ -59,10 +59,11 @@ Get your frontend hosted on IPFS by following this IPFS Hosting Guide. It’s ea
 
 ### Contributing
 Think you can make this better? Fork the repo, create a branch, and submit a pull request. We might even reward you with some virtual high-fives.
+
 ![NFT Meme](https://github.com/user-attachments/assets/e5309d10-f7c5-4adb-8484-c0c3419539bc)
 
 
 ### License
 This project is licensed under the MIT License. Because sharing is caring, even in the NFT world.
 
-###Disclaimer: This README has been crafted with a blend of sarcasm and cool. Dive into the world of NFTs, and remember: it's all fun and games until someone buys a virtual pet rock. 🎨✨
+### Disclaimer: This README has been crafted with a blend of sarcasm and cool. Dive into the world of NFTs, and remember: it's all fun and games until someone buys a virtual pet rock. 🎨✨
