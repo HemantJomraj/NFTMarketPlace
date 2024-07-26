@@ -1,4 +1,5 @@
 # NFTMarketPlace
+![NFT](https://github.com/user-attachments/assets/85d32e72-1a9a-4e54-98c9-5092a1dcccea)
 
 Welcome to NFTMarketplace, where creating and managing NFTs is as easy as making avocado toast. Whether you're a digital artist or just curious, this platform is here to make your NFT journey effortless and, dare we say, kind of fun.
 
@@ -37,7 +38,7 @@ Welcome to NFTMarketplace, where creating and managing NFTs is as easy as making
    git clone https://github.com/HemantJomraj/NFTMarketPlace.git
    cd NFTMarketPlace
    
-###Install dependencies:
+### Install dependencies:
 
 bash
 Copy code
@@ -56,10 +57,12 @@ forge script script/Deploy.s.sol:Deploy --rpc-url <your_rpc_url> --private-key <
 Host UI on IPFS:
 Get your frontend hosted on IPFS by following this IPFS Hosting Guide. It’s easier than explaining NFTs to your grandma.
 
-###Contributing
+### Contributing
 Think you can make this better? Fork the repo, create a branch, and submit a pull request. We might even reward you with some virtual high-fives.
+![NFT Meme](https://github.com/user-attachments/assets/e5309d10-f7c5-4adb-8484-c0c3419539bc)
 
-###License
+
+### License
 This project is licensed under the MIT License. Because sharing is caring, even in the NFT world.
 
 ###Disclaimer: This README has been crafted with a blend of sarcasm and cool. Dive into the world of NFTs, and remember: it's all fun and games until someone buys a virtual pet rock. 🎨✨
