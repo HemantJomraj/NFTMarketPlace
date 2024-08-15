@@ -5,6 +5,7 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract NFTMarketplace is ERC721URIStorage {
 
@@ -17,6 +18,9 @@ contract NFTMarketplace is ERC721URIStorage {
     address payable owner;
     //The fee charged by the marketplace to be allowed to list an NFT
     uint256 listPrice = 0.00 ether;
+    
+    // Accepted ERC20 token for payments
+    IERC20 public acceptedToken;
 
     //The structure to store info about a listed token
     struct ListedToken {
@@ -39,8 +43,9 @@ contract NFTMarketplace is ERC721URIStorage {
     //This mapping maps tokenId to token info and is helpful when retrieving details about a tokenId
     mapping(uint256 => ListedToken) private idToListedToken;
 
-    constructor() ERC721("NFTMarketplace", "NFTM") {
+    constructor(address _acceptedToken) ERC721("NFTMarketplace", "NFTM") {
         owner = payable(msg.sender);
+        acceptedToken = IERC20(_acceptedToken);
     }
 
     //Function to update List Price
@@ -159,10 +164,15 @@ contract NFTMarketplace is ERC721URIStorage {
         return items;
     }
 
-    function executeSale(uint256 tokenId) public payable {
+    function executeSale(uint256 tokenId) public {
         uint price = idToListedToken[tokenId].price;
         address seller = idToListedToken[tokenId].seller;
-        require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+        
+        // Ensure the buyer has enough tokens approved to cover the price
+        require(acceptedToken.allowance(msg.sender, address(this)) >= price, "Please approve the required amount of tokens for the purchase");
+
+        // Transfer the token payment from buyer to seller
+        require(acceptedToken.transferFrom(msg.sender, seller, price), "Token transfer failed");
 
         //update the details of the token
         idToListedToken[tokenId].currentlyListed = true;
@@ -175,9 +185,7 @@ contract NFTMarketplace is ERC721URIStorage {
         approve(address(this), tokenId);
 
         //Transfer the listing fee to the marketplace creator
-        payable(owner).transfer(listPrice);
-        //Transfer the proceeds from the sale to the seller of the NFT
-        payable(seller).transfer(msg.value);
+        acceptedToken.transfer(owner, listPrice);
     }
 
     //We might add a resell token function in the future

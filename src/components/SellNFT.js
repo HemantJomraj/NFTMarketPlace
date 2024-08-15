@@ -28,23 +28,28 @@ export default function SellNFT () {
     //This function uploads the NFT image to IPFS
     async function OnChangeFile(e) {
         var file = e.target.files[0];
-        //check for file extension
+        if (!file) {
+            console.error("No file selected.");
+            updateMessage("Please select a file to upload.");
+            return;
+        }
         try {
-            //upload the file to IPFS
             disableButton();
-            updateMessage("Uploading image.. Please Wait!")
+            updateMessage("Uploading image.. Please Wait!");
             const response = await uploadFileToIPFS(file);
-            if(response.success === true) {
+            if (response.success === true) {
                 enableButton();
-                updateMessage("")
-                console.log("Successfully Uploaded image to Pinata: ", response.pinataURL)
+                updateMessage("");
+                console.log("Successfully Uploaded image to Pinata: ", response.pinataURL);
                 setFileURL(response.pinataURL);
             }
-        }
-        catch(e) {
+        } catch(e) {
             console.log("Error during file upload", e);
+            enableButton(); // Re-enable the button in case of error
+            updateMessage("Failed to upload image.");
         }
     }
+    
 
     //This function uploads the metadata to IPFS
     async function uploadMetadataToIPFS() {
